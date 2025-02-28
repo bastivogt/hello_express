@@ -1,16 +1,16 @@
 <nav>
     <ul>
         <li>
-            <a href="/">Home</a>
+            <a href="<%= url("home:index") %>">Home</a>
         </li>
         <li>
-            <a href="/hello">Hello</a>
+            <a href="<%= url("home:hello") %>">Hello</a>
         </li>
         <li>
-            <a href="/greeting/Ute">Greeting</a>
+            <a href="<%= url("home:greeting", "Ute") %>">Greeting</a>
         </li>
         <li>
-            <a href="/people">People</a>
+            <a href="<%= url("people:index") %>">People</a>
         </li>
     </ul>
 </nav>

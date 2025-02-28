@@ -6,7 +6,7 @@
 <ul>
     <% people.forEach((person) => { %>
         <li>
-            <a href="/person/<%= person.id %>"><%= person.firstname %></a>
+            <a href="<%= url("person:detail", person.id) %>"><%= person.firstname %></a>
         </li>    
     <% }) %>
 </ul>

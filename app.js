@@ -1,7 +1,8 @@
 const express = require("express");
 
-const HomeRouter = require("./src/routes/HomeRouter");
-const PeopleRouter = require("./src/routes/PeopleRouter")
+const HomeRoutes = require("./src/routes/HomeRoutes");
+const PeopleRoutes = require("./src/routes/PeopleRoutes");
+const RouteHelper = require("./src/helper/RouteHelper");
 const requestLogger = require("./src/middleware/requestLogger");
 
 const app = express();
@@ -16,8 +17,8 @@ app.use(requestLogger);
 
 
 // Routes
-app.use(HomeRouter);
-app.use(PeopleRouter);
+app.use(HomeRoutes.getRouter());
+app.use(PeopleRoutes.getRouter());
 
 
 // 404
@@ -34,6 +35,9 @@ app.use((req, res) => {
 app.set("view engine", "ejs");
 // default is "./views"
 app.set("views", "./src/views");
+
+// locals
+app.locals.url = RouteHelper.url
 
 app.listen(port, () => {
     console.log(`App listen at: ${host}:${port}`);
