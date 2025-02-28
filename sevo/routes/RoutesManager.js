@@ -90,7 +90,7 @@ class RoutesManager {
     }
 
 
-    merge(routesManager) {
+    _merge(routesManager) {
         this._routes = this._routes.concat(routesManager._routes);
     }
 }
