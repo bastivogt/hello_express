@@ -12,12 +12,12 @@ const RoutesManager = require("../../sevo/routes/RoutesManager");
 // router.get("/greeting/:name", HomeController.greeting);
 
 const routesManager = RoutesManager.initialize();
+
 routesManager.addRoute(new Route("get", "/", HomeController.index, "home:index"));
 routesManager.addRoute(new Route("get", "/hello", HomeController.hello, "home:hello"));
 routesManager.addRoute(new Route("get", "/greeting/:name", HomeController.greeting, "home:greeting"));
+
+
 routesManager.createRouter();
-
-
-
 
 module.exports = routesManager;

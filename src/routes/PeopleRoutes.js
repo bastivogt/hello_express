@@ -12,8 +12,11 @@ const RoutesManager = require("./../../sevo/routes/RoutesManager");
 // router.get("/person/:id", PeopleController.detail);
 
 const routesManager = RoutesManager.initialize();
+
 routesManager.addRoute(new Route("get", "/people", PeopleController.index, "people:index"));
 routesManager.addRoute(new Route("get", "/person/:id", PeopleController.detail, "person:detail"));
+
+
 routesManager.createRouter();
 
 module.exports = routesManager;
