@@ -1,7 +1,7 @@
 const express = require("express");
 
-const HomeRoutes = require("./src/routes/HomeRoutes");
-const PeopleRoutes = require("./src/routes/PeopleRoutes");
+
+const routes = require("./src/routes/routes");
 const RouteHelper = require("./src/helper/RouteHelper");
 const requestLogger = require("./src/middleware/requestLogger");
 
@@ -17,8 +17,7 @@ app.use(requestLogger);
 
 
 // Routes
-app.use(HomeRoutes.getRouter());
-app.use(PeopleRoutes.getRouter());
+app.use(routes.getRouter());
 
 
 // 404

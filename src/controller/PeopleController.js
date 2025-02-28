@@ -7,7 +7,7 @@ class PeopleController {
                 published: true,
             },
         });
-        console.log(people);
+        //console.log(people);
         return res.render("people/index", {
             title: "People",
             people: people

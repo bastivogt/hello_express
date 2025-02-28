@@ -1,5 +1,5 @@
 class Route {
-    constructor(method, pattern, action, name) {
+    constructor(method="get", pattern="", action=null, name=null) {
         this.method = method;
         this.pattern = pattern;
         this.action = action;

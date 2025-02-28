@@ -4,23 +4,22 @@ const Route = require("./Route");
 class RoutesManager {
     constructor() {
         this._routes = [];
-        this._router = express.Router();
+        //this._router = express.Router();
+        this._router = null;
         
     }
 
-    static initialize() {
-        return new RoutesManager();
-    }
 
+    static _instance = null;
 
-    static merge(...params) {
-        const rm = new RoutesManager();
-        for (let r of params) {
-            rm._routes = rm._routes.concat(r._routes);
-            rm.merge(r);
+    static getRoutesManager() {
+        if(!RoutesManager._instance) {
+            RoutesManager._instance = new RoutesManager();
         }
-        return rm;
+        return RoutesManager._instance;
     }
+
+
 
     hasRoute(name) {
         for(const item of this._routes) {
@@ -79,6 +78,7 @@ class RoutesManager {
     }
 
     createRouter() {
+        this._router = express.Router();
         for(const route of this._routes) {
             // router.get("/greeting/:name", HomeController.greeting);
             this._router[route.method](route.pattern, route.action);

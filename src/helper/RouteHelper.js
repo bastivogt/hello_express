@@ -1,6 +1,5 @@
-const HomeRoutes = require("./../routes/HomeRoutes");
-const PeopleRoutes = require("./../routes/PeopleRoutes");
-const RoutesManager = require("./../../sevo/routes/RoutesManager")
+const routesManager = require("./../routes/routes");
+//const routesManager = require("./../routes/HomeRoutes");
 
 class RouteHelper {
     // static url(name, param = null) {
@@ -16,13 +15,18 @@ class RouteHelper {
     //     }
     //     return false;
     // }
-    static url(name, param = null) {
+    static __url(name, param = null) {
         const rm = RoutesManager.merge(
             HomeRoutes,
             PeopleRoutes
         );
         console.log(rm);
         return rm.getRoutePattern(name, param);
+
+    }
+
+    static url(name, param = null) {
+        return routesManager.getRoutePattern(name, param);
 
     }
 }
