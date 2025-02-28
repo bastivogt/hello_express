@@ -30,4 +30,4 @@ class PeopleController {
     }
 }
 
-module.exports = new PeopleController;
+module.exports = new PeopleController();
