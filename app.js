@@ -1,6 +1,7 @@
 const express = require("express");
 
 const HomeRouter = require("./src/routes/HomeRouter");
+const PeopleRouter = require("./src/routes/PeopleRouter")
 const requestLogger = require("./src/middleware/requestLogger");
 
 const app = express();
@@ -16,6 +17,15 @@ app.use(requestLogger);
 
 // Routes
 app.use(HomeRouter);
+app.use(PeopleRouter);
+
+
+// 404
+app.use((req, res) => {
+    res.status(404).render("error/404", {
+        title: "404 Page not found",
+    });
+});
 
 
 

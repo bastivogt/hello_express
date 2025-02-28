@@ -1,0 +1,14 @@
+<%- include("../inc/_header") %> 
+
+
+<h1><%= title %></h1>
+
+<ul>
+    <% people.forEach((person) => { %>
+        <li>
+            <a href="/person/<%= person.id %>"><%= person.firstname %></a>
+        </li>    
+    <% }) %>
+</ul>
+
+<%- include("../inc/_footer") %>
