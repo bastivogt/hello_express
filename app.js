@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const routesManager = require("./src/routes/routesManager");
 const RouteHelper = require("./src/helpers/RouteHelper");
 const requestLogger = require("./src/middlewares/requestLogger");
-const HttpErrorController = require("./src/controllers/HttpErrorController");
+const HttpErrorController = require("./src/controllers/ErrorController");
 
 const app = express();
 const port = 8042;

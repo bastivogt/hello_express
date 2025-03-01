@@ -6,44 +6,38 @@ class RoutesManager {
         this._routes = [];
         //this._router = express.Router();
         this._router = null;
-        
     }
-
 
     static _instance = null;
 
-    static getRoutesManager() {
-        if(!RoutesManager._instance) {
-            RoutesManager._instance = new RoutesManager();
+    static getInstance() {
+        if (!this._instance) {
+            this._instance = new this();
         }
-        return RoutesManager._instance;
+        return this._instance;
     }
 
-
-
     hasRoute(name) {
-        for(const item of this._routes) {
-            if(item.name === name) {
+        for (const item of this._routes) {
+            if (item.name === name) {
                 return true;
             }
         }
         return false;
     }
 
-
     addRoute(route) {
-        if(!this.hasRoute(route.name)) {
+        if (!this.hasRoute(route.name)) {
             this._routes.push(route);
             return true;
         }
         return false;
     }
 
-
     removeRoute(name) {
-        if(this.hasRoute(name)) {
-            for(let i = 0; i < this._routes.length; i ++) {
-                if(this._routes[i].name === name) {
+        if (this.hasRoute(name)) {
+            for (let i = 0; i < this._routes.length; i++) {
+                if (this._routes[i].name === name) {
                     this._routes.splice(i, 1);
                     return true;
                 }
@@ -52,11 +46,10 @@ class RoutesManager {
         return false;
     }
 
-
     getRoute(name) {
-        if(this.hasRoute(name)) {
-            for(const item of this._routes) {
-                if(item.name === name) {
+        if (this.hasRoute(name)) {
+            for (const item of this._routes) {
+                if (item.name === name) {
                     return item;
                 }
             }
@@ -80,13 +73,13 @@ class RoutesManager {
     getRoutePath(name, params = null) {
         // console.log("GET_ROUTE_PATH");
         const route = this.getRoute(name);
-        if(!route) return false;
+        if (!route) return false;
         const pattern = route.pattern;
         let path = pattern;
-        if(params === null) {
+        if (params === null) {
             return pattern;
         }
-        for(let p in params) {
+        for (let p in params) {
             path = path.replaceAll(`:${p}`, params[p]);
         }
         return path;
@@ -99,7 +92,7 @@ class RoutesManager {
 
     createRouter() {
         this._router = express.Router();
-        for(const route of this._routes) {
+        for (const route of this._routes) {
             // router.get("/greeting/:name", HomeController.greeting);
             this._router[route.method](route.pattern, route.action);
         }
@@ -109,12 +102,9 @@ class RoutesManager {
         return this._router;
     }
 
-
     _merge(routesManager) {
         this._routes = this._routes.concat(routesManager._routes);
     }
 }
-
-
 
 module.exports = RoutesManager;
