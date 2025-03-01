@@ -28,6 +28,7 @@ class PeopleController extends BaseController {
             return res.render("people/detail", {
                 title: `${person.firstname} ${person.lastname}`,
                 person: person,
+                referrer: req.get("referrer")
             });
         }
         next();
@@ -58,6 +59,7 @@ class PeopleController extends BaseController {
         res.render("people/create", {
             title: "Create person",
             values: values,
+            referrer: req.get("referrer")
         });
     }
 

@@ -9,6 +9,7 @@ class HomeController extends BaseController {
 
     hello(req, res) {
         const greeting = "Hello, world!";
+        //console.log("referrer", req.get("referrer"));
         return res.render("home/hello", {
             greeting: greeting,
             title: "Hello!",

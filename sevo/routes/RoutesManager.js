@@ -70,18 +70,20 @@ class RoutesManager {
     // }
 
     getRoutePath(name, params = null) {
-        // console.log("GET_ROUTE_PATH");
-        const route = this.getRoute(name);
-        if (!route) return false;
-        const pattern = route.pattern;
-        let path = pattern;
-        if (params === null) {
-            return pattern;
+        if(this.hasRoute(name)) {
+            // console.log("GET_ROUTE_PATH");
+            const route = this.getRoute(name);
+            const pattern = route.pattern;
+            let path = pattern;
+            if (params === null) {
+                return pattern;
+            }
+            for (let p in params) {
+                path = path.replaceAll(`:${p}`, params[p]);
+            }
+            return path;
         }
-        for (let p in params) {
-            path = path.replaceAll(`:${p}`, params[p]);
-        }
-        return path;
+        return false;
     }
 
     clear() {
