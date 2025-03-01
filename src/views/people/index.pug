@@ -7,7 +7,8 @@ block content
     ul 
         each person in people 
             li 
-                a(href=path("person:detail", {id: person.id})) #{person.firstname} 
+                a(href=path("person:detail", {id: person.id})) #{person.firstname} &nbsp 
+                a(href=path("person:update", {id: person.id})) [Edit]
 
 
 
