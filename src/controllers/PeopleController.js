@@ -51,7 +51,7 @@ class PeopleController extends BaseController {
                     lastname: values.lastname,
                     birthday: values.birthday,
                 });
-                return res.redirect(RouteHelper.url("people:index"));
+                return res.redirect(RouteHelper.path("people:index"));
             }
         }
 

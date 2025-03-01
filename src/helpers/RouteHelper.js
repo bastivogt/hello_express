@@ -22,7 +22,7 @@ class RouteHelper {
         return rm.getRoutePattern(name, param);
     }
 
-    static url(name, params = null) {
+    static path(name, params = null) {
         //return routesManager.getRoutePattern(name, param);
         const rm = RoutesManager.getInstance();
         //return rm.getRoutePattern(name, params);

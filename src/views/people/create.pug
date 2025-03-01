@@ -2,7 +2,7 @@ extends ../layouts/base.pug
 
 block content 
     div 
-        form(method="POST", action=url("person:create:post"))
+        form(method="POST", action=path("person:create:post"))
             div 
                 label(for="firstname") Firstname
                 input#firstname(type="text", name="firstname", placeholder="Max", required, value=values.firstname)

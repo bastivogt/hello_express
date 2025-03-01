@@ -3,11 +3,11 @@ extends ../layouts/base.pug
 block content 
     h1 #{title}
     div 
-        a(href=url("person:create")) Create person
+        a(href=path("person:create")) Create person
     ul 
         each person in people 
             li 
-                a(href=url("person:detail", {id: person.id})) #{person.firstname} 
+                a(href=path("person:detail", {id: person.id})) #{person.firstname} 
 
 
 

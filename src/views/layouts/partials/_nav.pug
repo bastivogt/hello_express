@@ -1,10 +1,10 @@
 nav
     ul
         li
-            a(href=url('home:index')) Home
+            a(href=path('home:index')) Home
         li
-            a(href=url('home:hello')) Hello
+            a(href=path('home:hello')) Hello
         li
-            a(href=url('home:greeting', {name: 'Ute'})) Greeting
+            a(href=path('home:greeting', {name: 'Ute'})) Greeting
         li
-            a(href=url('people:index')) People
+            a(href=path('people:index')) People

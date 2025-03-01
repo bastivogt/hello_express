@@ -38,8 +38,11 @@ app.set("view engine", "pug");
 // default is "./views"
 app.set("views", "./src/views");
 
+
+
 // locals
-app.locals.url = RouteHelper.url;
+app.locals.path = RouteHelper.path;
+app.locals.siteTitle = "Hello Express";
 //app.locals.url = (name, param = null) => routesManager.getRoutePattern(name, param);
 
 app.listen(port, () => {
