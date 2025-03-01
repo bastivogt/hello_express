@@ -4,7 +4,6 @@ const Route = require("./Route");
 class RoutesManager {
     constructor() {
         this._routes = [];
-        //this._router = express.Router();
         this._router = null;
     }
 
