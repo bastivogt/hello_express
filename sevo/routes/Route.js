@@ -5,8 +5,9 @@ class Route {
     static PATCH = "patch";
     static POST = "post";
     static USE = "use";
+    static ALL = "all";
 
-    constructor(method="get", pattern="", action=null, name=null) {
+    constructor(method=this.GET, pattern="", action=null, name=null) {
         this.method = method;
         this.pattern = pattern;
         this.action = action;

@@ -9,15 +9,15 @@ const routesManager = RoutesManager.getRoutesManager();
 
 
 // HomeController
-routesManager.addRoute(new Route("get", "/", HomeController.index, "home:index"));
-routesManager.addRoute(new Route("get", "/hello", HomeController.hello, "home:hello"));
-routesManager.addRoute(new Route("get", "/greeting/:name", HomeController.greeting, "home:greeting"));
+routesManager.addRoute(new Route(Route.GET, "/", HomeController.index, "home:index"));
+routesManager.addRoute(new Route(Route.GET, "/hello", HomeController.hello, "home:hello"));
+routesManager.addRoute(new Route(Route.GET, "/greeting/:name", HomeController.greeting, "home:greeting"));
 
 // PeopleController
-routesManager.addRoute(new Route("get", "/people", PeopleController.index, "people:index"));
-routesManager.addRoute(new Route("get", "/person/:id", PeopleController.detail, "person:detail"));
-routesManager.addRoute(new Route("get", "/person/create", PeopleController.create, "person:create"));
-routesManager.addRoute(new Route("post", "/person/create", PeopleController.create, "person:create:post"));
+routesManager.addRoute(new Route(Route.GET, "/people", PeopleController.index, "people:index"));
+routesManager.addRoute(new Route(Route.GET, "/person/:id", PeopleController.detail, "person:detail"));
+routesManager.addRoute(new Route(Route.GET, "/person/create", PeopleController.create, "person:create"));
+routesManager.addRoute(new Route(Route.POST, "/person/create", PeopleController.create, "person:create:post"));
 
 
 
