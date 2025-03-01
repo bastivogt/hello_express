@@ -1,36 +1,34 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-
 const routesManager = require("./src/routes/routesManager");
-const RouteHelper = require("./src/helper/RouteHelper");
-const requestLogger = require("./src/middleware/requestLogger");
+const RouteHelper = require("./src/helpers/RouteHelper");
+const requestLogger = require("./src/middlewares/requestLogger");
+const HttpErrorController = require("./src/controllers/HttpErrorController");
 
 const app = express();
 const port = 8042;
-const host = "http://localhost"
+const host = "http://localhost";
 
-
-// middleware
+// middlewares
 app.use(express.static("./src/public"));
-app.use(bodyParser.urlencoded({extended: true}));
-// custom middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+// custom middlewares
 app.use(requestLogger);
 
-console.log(routesManager.getRoutePath("person:detail", {id:5}));
+console.log(routesManager.getRoutePath("person:detail", { id: 5 }));
 
 // Routes
 app.use(routesManager.getRouter());
 
-
 // 404
-app.use((req, res) => {
-    res.status(404).render("error/404", {
-        title: "404 Page not found",
-    });
-});
-
-
+// app.use((req, res) => {
+//     res.status(404).render("http_error/404", {
+//         title: "404 Page not found",
+//     });
+// });
+//app.use(HttpErrorController._404);
+// now in rotes/routeManager
 
 // template engine
 // npm i ejs
@@ -41,7 +39,7 @@ app.set("view engine", "pug");
 app.set("views", "./src/views");
 
 // locals
-app.locals.url = RouteHelper.url
+app.locals.url = RouteHelper.url;
 //app.locals.url = (name, param = null) => routesManager.getRoutePattern(name, param);
 
 app.listen(port, () => {

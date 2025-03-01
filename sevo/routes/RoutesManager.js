@@ -39,6 +39,7 @@ class RoutesManager {
         return false;
     }
 
+
     removeRoute(name) {
         if(this.hasRoute(name)) {
             for(let i = 0; i < this._routes.length; i ++) {
@@ -61,6 +62,10 @@ class RoutesManager {
             }
         }
         return false;
+    }
+
+    getRoutes() {
+        return this._routes;
     }
 
     // getRoutePattern(name, param = null) {

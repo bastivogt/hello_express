@@ -1,9 +1,8 @@
-const BaseController = require("./../../sevo/controller/BaseController");
-const PersonModel = require("./../models/PersonModel");
+const BaseController = require("../../sevo/controllers/BaseController");
+const PersonModel = require("../models/PersonModel");
 //const RoutesManager = require("./../../sevo/routes/RoutesManager");
-const RouteHelper = require("./../helper/RouteHelper");
-
-
+const RouteHelper = require("../helpers/RouteHelper");
+const StringUtils = require("../../sevo/utils/StringUtils");
 
 class PeopleController extends BaseController {
     async index(req, res, next) {
@@ -15,7 +14,7 @@ class PeopleController extends BaseController {
         //console.log(people);
         res.render("people/index", {
             title: "People",
-            people: people
+            people: people,
         });
     }
 
@@ -25,44 +24,41 @@ class PeopleController extends BaseController {
             return next();
         }
         const person = await PersonModel.findByPk(id);
-        if(person) {
+        if (person) {
             return res.render("people/detail", {
                 title: `${person.firstname} ${person.lastname}`,
-                person: person
-            })
+                person: person,
+            });
         }
         next();
     }
-
 
     async create(req, res, next) {
         let values = {
             firstname: "",
             lastname: "",
-            birthday: ""
-        }
-        if(req.method === "POST") {
+            birthday: "",
+        };
+        if (req.method === "POST") {
             //const rm = RoutesManager.getRoutesManager();
             console.log(req.method);
             console.log(req.body);
             values = req.body;
             console.log("VALUES", values);
-            if(values.firstname && values.lastname && values.birthday) {
+            if (values.firstname && values.lastname && values.birthday) {
                 const person = await PersonModel.create({
                     firstname: values.firstname,
                     lastname: values.lastname,
-                    birthday: values.birthday
+                    birthday: values.birthday,
                 });
                 return res.redirect(RouteHelper.url("people:index"));
-            
             }
         }
 
         res.render("people/create", {
             title: "Create person",
-            values: values
+            values: values,
         });
-
     }
 
     async create_post(req, res, next) {
@@ -70,11 +66,11 @@ class PeopleController extends BaseController {
         console.log(req.method);
         console.log(req.body);
         const body = req.body;
-        if(body.firstname && body.lastname && body.birthday) {
+        if (body.firstname && body.lastname && body.birthday) {
             const person = PersonModel.create({
                 firstname: body.firstname,
                 lastname: body.lastname,
-                birthday: body.birthday
+                birthday: body.birthday,
             });
             res.redirect(rm.getRoutePattern("people:index"));
         }

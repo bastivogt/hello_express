@@ -1,7 +1,6 @@
-const BaseController = require("./../../sevo/controller/BaseController");
+const BaseController = require("../../sevo/controllers/BaseController");
 
 class HomeController extends BaseController {
-
     index(req, res) {
         return res.render("home/index", {
             title: "Home Index",
@@ -11,8 +10,8 @@ class HomeController extends BaseController {
     hello(req, res) {
         const greeting = "Hello, world!";
         return res.render("home/hello", {
-            greeting: greeting, 
-            title: "Hello!"
+            greeting: greeting,
+            title: "Hello!",
         });
     }
 
@@ -20,27 +19,12 @@ class HomeController extends BaseController {
         const name = req.params.name;
         return res.render("home/greeting", {
             title: "Greeting",
-            name: name
-        })
+            name: name,
+        });
     }
 }
 
 module.exports = HomeController.getInstance();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* const HomeController = {
     index(req, res) {
@@ -59,4 +43,3 @@ module.exports = HomeController.getInstance();
 }
 
 module.exports = HomeController; */
-

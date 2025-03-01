@@ -7,7 +7,7 @@ class Route {
     static USE = "use";
     static ALL = "all";
 
-    constructor(method=this.GET, pattern="", action=null, name=null) {
+    constructor(method = this.GET, pattern = null, action = null, name = null) {
         this.method = method;
         this.pattern = pattern;
         this.action = action;
@@ -16,6 +16,3 @@ class Route {
 }
 
 module.exports = Route;
-
-
-
