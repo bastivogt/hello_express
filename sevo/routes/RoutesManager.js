@@ -63,13 +63,28 @@ class RoutesManager {
         return false;
     }
 
-    getRoutePattern(name, param = null) {
+    // getRoutePattern(name, param = null) {
+    //     const route = this.getRoute(name);
+    //     if (!route) return false;
+    //     if (param === null) {
+    //         return route.pattern;
+    //     }
+    //     return route.pattern.split(":")[0] + `${param}`;
+    // }
+
+    getRoutePath(name, params = null) {
+        // console.log("GET_ROUTE_PATH");
         const route = this.getRoute(name);
-        if (!route) return false;
-        if (param === null) {
-            return route.pattern;
+        if(!route) return false;
+        const pattern = route.pattern;
+        let path = pattern;
+        if(params === null) {
+            return pattern;
         }
-        return route.pattern.split(":")[0] + `${param}`;
+        for(let p in params) {
+            path = path.replaceAll(`:${p}`, params[p]);
+        }
+        return path;
     }
 
     clear() {

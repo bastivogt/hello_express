@@ -1,7 +1,8 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 
-const routes = require("./src/routes/routes");
+const routesManager = require("./src/routes/routesManager");
 const RouteHelper = require("./src/helper/RouteHelper");
 const requestLogger = require("./src/middleware/requestLogger");
 
@@ -12,12 +13,14 @@ const host = "http://localhost"
 
 // middleware
 app.use(express.static("./src/public"));
+app.use(bodyParser.urlencoded({extended: true}));
 // custom middleware
 app.use(requestLogger);
 
+console.log(routesManager.getRoutePath("person:detail", {id:5}));
 
 // Routes
-app.use(routes.getRouter());
+app.use(routesManager.getRouter());
 
 
 // 404
@@ -31,12 +34,15 @@ app.use((req, res) => {
 
 // template engine
 // npm i ejs
-app.set("view engine", "ejs");
+//app.set("view engine", "ejs");
+// npm i pug
+app.set("view engine", "pug");
 // default is "./views"
 app.set("views", "./src/views");
 
 // locals
 app.locals.url = RouteHelper.url
+//app.locals.url = (name, param = null) => routesManager.getRoutePattern(name, param);
 
 app.listen(port, () => {
     console.log(`App listen at: ${host}:${port}`);

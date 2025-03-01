@@ -1,8 +1,8 @@
-const RoutesManager = require("./../../sevo/routes/RoutesManager");
-const Route = require("./../../sevo/routes/Route");
+const RoutesManager = require("../../sevo/routes/RoutesManager");
+const Route = require("../../sevo/routes/Route");
 
-const HomeController = require("./../controller/HomeController");
-const PeopleController = require("./../controller/PeopleController");
+const HomeController = require("../controller/HomeController");
+const PeopleController = require("../controller/PeopleController");
 
 
 const routesManager = RoutesManager.getRoutesManager();
@@ -16,6 +16,8 @@ routesManager.addRoute(new Route("get", "/greeting/:name", HomeController.greeti
 // PeopleController
 routesManager.addRoute(new Route("get", "/people", PeopleController.index, "people:index"));
 routesManager.addRoute(new Route("get", "/person/:id", PeopleController.detail, "person:detail"));
+routesManager.addRoute(new Route("get", "/person/create", PeopleController.create, "person:create"));
+routesManager.addRoute(new Route("post", "/person/create", PeopleController.create, "person:create:post"));
 
 
 

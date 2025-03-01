@@ -1,0 +1,23 @@
+extends ../layouts/base.pug
+
+block content 
+    h1 #{title}
+    div 
+        strong Firstname: 
+        span #{person.firstname}
+    
+    div 
+        strong Lastname: 
+        span #{person.lastname}
+
+    div 
+        strong Birthday: 
+        span #{person.birthday}
+
+    br
+    div 
+        a.back-link(href="#") Back
+
+
+
+

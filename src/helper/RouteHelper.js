@@ -1,4 +1,5 @@
-const routesManager = require("./../routes/routes");
+const routesManager = require("../routes/routesManager");
+const RoutesManager = require("./../../sevo/routes/RoutesManager");
 //const routesManager = require("./../routes/HomeRoutes");
 
 class RouteHelper {
@@ -25,8 +26,11 @@ class RouteHelper {
 
     }
 
-    static url(name, param = null) {
-        return routesManager.getRoutePattern(name, param);
+    static url(name, params = null) {
+        //return routesManager.getRoutePattern(name, param);
+        const rm = RoutesManager.getRoutesManager();
+        //return rm.getRoutePattern(name, params);
+        return rm.getRoutePath(name, params);
 
     }
 }
