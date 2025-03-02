@@ -29,40 +29,18 @@ class PeopleController extends BaseController {
             return res.render("people/detail", {
                 title: `${person.firstname} ${person.lastname}`,
                 person: person,
-                referrer: req.get("referrer")
+                referrer: req.get("referrer"),
             });
         }
         next();
     }
 
-    // async create(req, res, next) {
-    //     let values = {
-    //         firstname: "",
-    //         lastname: "",
-    //         birthday: "",
-    //     };
-    //     if (req.method === "POST") {
-    //         //const rm = RoutesManager.getRoutesManager();
-    //         console.log(req.method);
-    //         console.log(req.body);
-    //         values = req.body;
-    //         console.log("VALUES", values);
-    //         if (values.firstname && values.lastname && values.birthday) {
-    //             const person = await PersonModel.create({
-    //                 firstname: values.firstname,
-    //                 lastname: values.lastname,
-    //                 birthday: values.birthday,
-    //             });
-    //             return res.redirect(RouteHelper.path("people:index"));
-    //         }
-    //     }
-
-
-
-
-
     async create(req, res, next) {
-        const formData = new PersonFormData({firstname: "", lastname: "", birthday: ""});
+        const formData = new PersonFormData({
+            firstname: "",
+            lastname: "",
+            birthday: "",
+        });
         console.log(formData.getFields());
         if (req.method === "POST") {
             //const rm = RoutesManager.getRoutesManager();
@@ -82,10 +60,9 @@ class PeopleController extends BaseController {
         res.render("people/create", {
             title: "Create person",
             referrer: req.get("referrer"),
-            values: formData.getFields()
+            values: formData.getFields(),
         });
     }
-
 
     async update(req, res, next) {
         const id = parseInt(req.params.id);
@@ -93,9 +70,13 @@ class PeopleController extends BaseController {
             return next();
         }
         const person = await PersonModel.findByPk(id);
-        const formData = new PersonFormData({firstname: person.firstname, lastname: person.lastname, birthday: person.birthday});
+        const formData = new PersonFormData({
+            firstname: person.firstname,
+            lastname: person.lastname,
+            birthday: person.birthday,
+        });
 
-        if(req.method === "POST") {
+        if (req.method === "POST") {
             console.log("PeopleController#update#post");
             formData.update(req.body);
             if (formData.isValid()) {
@@ -117,12 +98,11 @@ class PeopleController extends BaseController {
                 title: `${person.firstname} ${person.lastname}`,
                 person: person,
                 values: formData.getFields(),
-                referrer: req.get("referrer")
+                referrer: req.get("referrer"),
             });
         }
         next();
     }
-
 
     async delete(req, res, next) {
         const id = parseInt(req.params.id);
@@ -131,35 +111,23 @@ class PeopleController extends BaseController {
         }
         const person = await PersonModel.findByPk(id);
 
-
-        if(req.method === "POST") {
+        if (req.method === "POST") {
             console.log("PeopleController#delete#post");
             await person.destroy();
             return res.redirect(RouteHelper.path("people:index"));
         }
 
-        if(person) {
+        if (person) {
             return res.render("people/delete", {
                 title: `${person.firstname} ${person.lastname}`,
                 person: person,
-                referrer: req.get("referrer")
+                referrer: req.get("referrer"),
             });
         }
 
         next();
     }
 
-
-
-
-
-
-    //     res.render("people/create", {
-    //         title: "Create person",
-    //         values: values,
-    //         referrer: req.get("referrer")
-    //     });
-    // }
 
     async create_post(req, res, next) {
         //const rm = RoutesManager.getRoutesManager();
