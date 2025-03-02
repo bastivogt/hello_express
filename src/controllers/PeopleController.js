@@ -96,6 +96,7 @@ class PeopleController extends BaseController {
         const formData = new PersonFormData({firstname: person.firstname, lastname: person.lastname, birthday: person.birthday});
 
         if(req.method === "POST") {
+            console.log("PeopleController#update#post");
             formData.update(req.body);
             if (formData.isValid()) {
                 person.update({
@@ -119,6 +120,32 @@ class PeopleController extends BaseController {
                 referrer: req.get("referrer")
             });
         }
+        next();
+    }
+
+
+    async delete(req, res, next) {
+        const id = parseInt(req.params.id);
+        if (!id || id === NaN) {
+            return next();
+        }
+        const person = await PersonModel.findByPk(id);
+
+
+        if(req.method === "POST") {
+            console.log("PeopleController#delete#post");
+            await person.destroy();
+            return res.redirect(RouteHelper.path("people:index"));
+        }
+
+        if(person) {
+            return res.render("people/delete", {
+                title: `${person.firstname} ${person.lastname}`,
+                person: person,
+                referrer: req.get("referrer")
+            });
+        }
+
         next();
     }
 

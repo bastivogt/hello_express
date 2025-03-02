@@ -21,7 +21,9 @@ routesManager.addRoute(new Route(Route.GET, "/person/:id", PeopleController.deta
 routesManager.addRoute(new Route(Route.GET,"/person/create", PeopleController.create, "person:create"));
 routesManager.addRoute(new Route(Route.POST, "/person/create", PeopleController.create, "person:create:post"));
 routesManager.addRoute(new Route(Route.GET,"/person/update/:id", PeopleController.update, "person:update"));
-routesManager.addRoute(new Route(Route.POST, "/person/update/:id", PeopleController.create, "person:update:post"));
+routesManager.addRoute(new Route(Route.POST, "/person/update/:id", PeopleController.update, "person:update:post"));
+routesManager.addRoute(new Route(Route.GET,"/person/delete/:id", PeopleController.delete, "person:delete"));
+routesManager.addRoute(new Route(Route.POST,"/person/delete/:id", PeopleController.delete, "person:delete:post"));
 
 // Errors
 routesManager.addRoute(new Route(Route.USE, "", ErrorController._404, "error:404"));

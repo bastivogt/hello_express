@@ -1,0 +1,25 @@
+extends ../layouts/base.pug
+
+block content 
+    h1 Delete #{title}
+    div 
+        p Do you really want to delete this person?
+        div 
+            strong Firstname: 
+            span #{person.firstname}
+    
+        div 
+            strong Lastname: 
+            span #{person.lastname}
+
+        div 
+            strong Birthday: 
+            span #{person.birthday}
+
+    form(action=path("person:delete:post", {id: person.id}), method="post") 
+        button Delete
+
+    
+    br
+    div 
+        a(href=referrer) Back
